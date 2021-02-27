@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EquipmentHandover index{% endblock %}
+
+{% block body %}
+    <h1>EquipmentHandover index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>HandoverDate</th>
+                <th>TakeoverDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equipment_handover in equipment_handovers %}
+            <tr>
+                <td>{{ equipment_handover.id }}</td>
+                <td>{{ equipment_handover.handoverDate ? equipment_handover.handoverDate|date('Y-m-d') : '' }}</td>
+                <td>{{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('equipment_handover_show', {'id': equipment_handover.id}) }}">show</a>
+                    <a href="{{ path('equipment_handover_edit', {'id': equipment_handover.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('equipment_handover_new') }}">Create new</a>
+{% endblock %}

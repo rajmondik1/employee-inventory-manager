@@ -56,4 +56,5 @@ security:
         - { path: ^/login|/register, roles: PUBLIC_ACCESS }
 
         # but require authentication for all other admin routes
-        - { path: ^/*, roles: ROLE_USER }
+        - { path: ^/*, roles: PUBLIC_ACCESS }
+#        - { path: ^/*, roles: ROLE_USER }

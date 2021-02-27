@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit EquipmentHandover{% endblock %}
+
+{% block body %}
+    <h1>Edit EquipmentHandover</h1>
+
+    {{ include('equipment_handover/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('equipment_handover_index') }}">back to list</a>
+
+    {{ include('equipment_handover/_delete_form.html.twig') }}
+{% endblock %}

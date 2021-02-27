@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EquipmentHandover{% endblock %}
+
+{% block body %}
+    <h1>Create new EquipmentHandover</h1>
+
+    {{ include('equipment_handover/_form.html.twig') }}
+
+    <a href="{{ path('equipment_handover_index') }}">back to list</a>
+{% endblock %}

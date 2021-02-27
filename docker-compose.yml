@@ -29,7 +29,7 @@ services:
 
     mysql-service:
         image: mariadb:10.5.5
-        container_name: mysql8-container
+        container_name: database-container
         ports:
             - "3306:3306"
         volumes:
@@ -41,14 +41,3 @@ services:
             MYSQL_ROOT_PASSWORD: toor
             MYSQL_USERNAME: root
             MYSQL_PASSWORD: toor
-
-    rabbitmq:
-        image: rabbitmq:3.8-management
-        container_name: rabbitmq_container
-        ports: [5672, 15672]
-
-    mailcatcher:
-        image: yappabe/mailcatcher
-        ports:
-            - 1025:1025
-            - 1080:1080

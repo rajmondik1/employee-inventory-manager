@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EquipmentHandover{% endblock %}
+
+{% block body %}
+    <h1>EquipmentHandover</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ equipment_handover.id }}</td>
+            </tr>
+            <tr>
+                <th>HandoverDate</th>
+                <td>{{ equipment_handover.handoverDate ? equipment_handover.handoverDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TakeoverDate</th>
+                <td>{{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('equipment_handover_index') }}">back to list</a>
+
+    <a href="{{ path('equipment_handover_edit', {'id': equipment_handover.id}) }}">edit</a>
+
+    {{ include('equipment_handover/_delete_form.html.twig') }}
+{% endblock %}

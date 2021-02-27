@@ -28,11 +28,8 @@ class IndexController extends ApiController
      * @param MessageBusInterface $bus
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function test(MessageBusInterface $bus)
+    public function test()
     {
-        $bus->dispatch(new DoSomethingMessage(1));
-        $this->dispatchMessage(new DoSomethingMessage(2));
-
         return new Response('Your message has been dispatched!');
     }
 }
