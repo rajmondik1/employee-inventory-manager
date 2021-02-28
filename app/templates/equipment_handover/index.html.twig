@@ -33,7 +33,13 @@
                         {% endif %}
                     </td>
                     <td>
-                        <i class="fa fa-laptop"></i>
+                        {% if equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_LAPTOP') %}
+                            <i class="fa fa-laptop"></i>
+                        {% elseif equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_PHONE') %}
+                            <i class="fa fa-phone"></i>
+                        {% elseif equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_ACCESSORY') %}
+                            <i class="fa fa-keyboard"></i>
+                        {% endif %}
                         {{ equipment_handover.equipment.brandName }} {{ equipment_handover.equipment.model }}
                         ({{ equipment_handover.equipment.year ? equipment_handover.equipment.year |date('Y') : '' }})
                     </td>
@@ -62,10 +68,10 @@
                     <td>
                         <a class="btn btn-sm btn-default"
                            href="{{ path('equipment_handover_show', {'id': equipment_handover.id}) }}"><i
-                                    class="fa fa-eye"></i>Žiūrėti</a>
+                                    class="fa fa-eye"></i> Žiūrėti</a>
                         <a class="btn btn-sm btn-default"
                            href="{{ path('equipment_handover_edit', {'id': equipment_handover.id}) }}"><i
-                                    class="fa fa-edit"></i>Redaguoti</a>
+                                    class="fa fa-edit"></i> Redaguoti</a>
                     </td>
                 </tr>
             {% else %}

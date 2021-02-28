@@ -59,16 +59,26 @@ class Employee
         $this->equipmentHandovers = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return $this
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -76,11 +86,18 @@ class Employee
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getSurname(): ?string
     {
         return $this->surname;
     }
 
+    /**
+     * @param string $surname
+     * @return $this
+     */
     public function setSurname(string $surname): self
     {
         $this->surname = $surname;
@@ -88,11 +105,18 @@ class Employee
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -100,11 +124,18 @@ class Employee
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPhone(): ?string
     {
         return $this->phone;
     }
 
+    /**
+     * @param string $phone
+     * @return $this
+     */
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
@@ -112,11 +143,18 @@ class Employee
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDepartment(): ?string
     {
         return $this->department;
     }
 
+    /**
+     * @param string $department
+     * @return $this
+     */
     public function setDepartment(string $department): self
     {
         $this->department = $department;
@@ -124,11 +162,18 @@ class Employee
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPosition(): ?string
     {
         return $this->position;
     }
 
+    /**
+     * @param string $position
+     * @return $this
+     */
     public function setPosition(string $position): self
     {
         $this->position = $position;
@@ -144,6 +189,10 @@ class Employee
         return $this->equipmentHandovers;
     }
 
+    /**
+     * @param EquipmentHandover $equipmentHandover
+     * @return $this
+     */
     public function addEquipmentHandover(EquipmentHandover $equipmentHandover): self
     {
         if (!$this->equipmentHandovers->contains($equipmentHandover)) {
@@ -154,6 +203,10 @@ class Employee
         return $this;
     }
 
+    /**
+     * @param EquipmentHandover $equipmentHandover
+     * @return $this
+     */
     public function removeEquipmentHandover(EquipmentHandover $equipmentHandover): self
     {
         if ($this->equipmentHandovers->removeElement($equipmentHandover)) {

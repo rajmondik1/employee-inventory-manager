@@ -7,45 +7,56 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Įranga</h3>
-            <a class="btn btn-sm btn-primary fa-pull-right" href="{{ path('equipment_new') }}"><i class="fa fa-plus"></i>Nauja įranga</a>
+            <a class="btn btn-sm btn-primary fa-pull-right" href="{{ path('equipment_new') }}"><i
+                        class="fa fa-plus"></i>Nauja įranga</a>
         </div>
 
-    <table class="table table-striped">
-        <thead>
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>Gamintojas</th>
                 <th>Modelis</th>
+                <th>Tipas</th>
                 <th>Metai</th>
                 <th>Unikalus kodas</th>
                 <th>Kaina</th>
                 <th>Garantija iki</th>
-                <th>Failai</th>
                 <th>Veiksmai</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for equipment in equipment %}
-            <tr>
-                <td>{{ equipment.brandName }}</td>
-                <td>{{ equipment.model }}</td>
-                <td>{{ equipment.year ? equipment.year|date('Y-m-d') : '' }}</td>
-                <td><i class="fa fa-qrcode"></i> {{ equipment.identifier }}</td>
-                <td><i class="fa fa-money-bill"></i> {{ equipment.price }} EUR</td>
-                <td><i class="fa fa-calendar"></i>{{ equipment.warrantyExpires ? equipment.warrantyExpires|date('Y-m-d') : '' }}</td>
-                <td>{{ equipment.file }}</td>
-                <td>
-                    <a class="btn btn-sm btn-default" href="{{ path('equipment_show', {'id': equipment.id}) }}"><i
-                                class="fa fa-eye"></i>Žiūrėti</a>
-                    <a class="btn btn-sm btn-default" href="{{ path('equipment_edit', {'id': equipment.id}) }}"><i
-                                class="fa fa-edit"></i>Redaguoti</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">Nėra duomenų</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+            {% for equipment in equipment %}
+                <tr>
+                    <td>{{ equipment.brandName }}</td>
+                    <td>{{ equipment.model }}</td>
+                    <td>
+                        {% if equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_LAPTOP') %}
+                            <i class="fa fa-laptop"></i> Nešiojamas kompiuteris
+                        {% elseif equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_PHONE') %}
+                            <i class="fa fa-phone"></i> Telefonas
+                        {% elseif equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_ACCESSORY') %}
+                            <i class="fa fa-keyboard"></i> Aksesuaras
+                        {% endif %}
+                    </td>
+                    <td><i class="fa fa-calendar"></i> {{ equipment.year ? equipment.year|date('Y-m-d') : '' }}</td>
+                    <td><i class="fa fa-qrcode"></i> {{ equipment.identifier }}</td>
+                    <td><i class="fa fa-money-bill"></i> {{ equipment.price }} EUR</td>
+                    <td>
+                        <i class="fa fa-calendar"></i> {{ equipment.warrantyExpires ? equipment.warrantyExpires|date('Y-m-d') : '' }}
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-default" href="{{ path('equipment_show', {'id': equipment.id}) }}"><i
+                                    class="fa fa-eye"></i> Žiūrėti</a>
+                        <a class="btn btn-sm btn-default" href="{{ path('equipment_edit', {'id': equipment.id}) }}"><i
+                                    class="fa fa-edit"></i> Redaguoti</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Nėra duomenų</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
