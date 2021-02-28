@@ -1,45 +1,47 @@
 {% extends 'index.html.twig' %}
 
-{% block title %}Employee index{% endblock %}
+{% block title %}Darbuotojai{% endblock %}
 
 {% block body %}
-    <h1>Employee index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Department</th>
-                <th>Position</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for employee in employees %}
-            <tr>
-                <td>{{ employee.id }}</td>
-                <td>{{ employee.name }}</td>
-                <td>{{ employee.surname }}</td>
-                <td>{{ employee.email }}</td>
-                <td>{{ employee.phone }}</td>
-                <td>{{ employee.department }}</td>
-                <td>{{ employee.position }}</td>
-                <td>
-                    <a href="{{ path('employee_show', {'id': employee.id}) }}">show</a>
-                    <a href="{{ path('employee_edit', {'id': employee.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Darbuotojai</h3>
+            <a class="btn btn-sm btn-primary fa-pull-right" href="{{ path('employee_new') }}"><i class="fa fa-plus"></i>Naujas darbuotojas</a>
+        </div>
 
-    <a href="{{ path('employee_new') }}">Create new</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Vardas pavardė</th>
+                <th>El. paštas</th>
+                <th>Telefono numeris</th>
+                <th>Skyrius</th>
+                <th>Pareigos</th>
+                <th>Veiksmai</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td><i class="fa fa-user"></i> {{ employee.name }} {{ employee.surname }}</td>
+                    <td><i class="fa fa-envelope"></i> {{ employee.email }}</td>
+                    <td><i class="fa fa-phone"></i> {{ employee.phone }}</td>
+                    <td><i class="fa fa-building"></i> {{ employee.department }}</td>
+                    <td><i class="fa fa-sitemap"></i> {{ employee.position }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-default" href="{{ path('employee_show', {'id': employee.id}) }}"><i
+                                    class="fa fa-eye"></i>Žiūrėti</a>
+                        <a class="btn btn-sm btn-default" href="{{ path('employee_edit', {'id': employee.id}) }}"><i
+                                    class="fa fa-edit"></i>Redaguoti</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Nėra duomenų</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

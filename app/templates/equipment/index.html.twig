@@ -3,45 +3,49 @@
 {% block title %}Equipment index{% endblock %}
 
 {% block body %}
-    <h1>Equipment index</h1>
 
-    <table class="table">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Įranga</h3>
+            <a class="btn btn-sm btn-primary fa-pull-right" href="{{ path('equipment_new') }}"><i class="fa fa-plus"></i>Nauja įranga</a>
+        </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>BrandName</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>Identifier</th>
-                <th>Price</th>
-                <th>WarrantyExpires</th>
-                <th>File</th>
-                <th>actions</th>
+                <th>Gamintojas</th>
+                <th>Modelis</th>
+                <th>Metai</th>
+                <th>Unikalus kodas</th>
+                <th>Kaina</th>
+                <th>Garantija iki</th>
+                <th>Failai</th>
+                <th>Veiksmai</th>
             </tr>
         </thead>
         <tbody>
         {% for equipment in equipment %}
             <tr>
-                <td>{{ equipment.id }}</td>
                 <td>{{ equipment.brandName }}</td>
                 <td>{{ equipment.model }}</td>
                 <td>{{ equipment.year ? equipment.year|date('Y-m-d') : '' }}</td>
-                <td>{{ equipment.identifier }}</td>
-                <td>{{ equipment.price }}</td>
-                <td>{{ equipment.warrantyExpires ? equipment.warrantyExpires|date('Y-m-d') : '' }}</td>
+                <td><i class="fa fa-qrcode"></i> {{ equipment.identifier }}</td>
+                <td><i class="fa fa-money-bill"></i> {{ equipment.price }} EUR</td>
+                <td><i class="fa fa-calendar"></i>{{ equipment.warrantyExpires ? equipment.warrantyExpires|date('Y-m-d') : '' }}</td>
                 <td>{{ equipment.file }}</td>
                 <td>
-                    <a href="{{ path('equipment_show', {'id': equipment.id}) }}">show</a>
-                    <a href="{{ path('equipment_edit', {'id': equipment.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-default" href="{{ path('equipment_show', {'id': equipment.id}) }}"><i
+                                class="fa fa-eye"></i>Žiūrėti</a>
+                    <a class="btn btn-sm btn-default" href="{{ path('equipment_edit', {'id': equipment.id}) }}"><i
+                                class="fa fa-edit"></i>Redaguoti</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="8">Nėra duomenų</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('equipment_new') }}">Create new</a>
+</div>
 {% endblock %}

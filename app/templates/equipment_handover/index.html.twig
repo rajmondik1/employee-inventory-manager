@@ -3,35 +3,78 @@
 {% block title %}EquipmentHandover index{% endblock %}
 
 {% block body %}
-    <h1>EquipmentHandover index</h1>
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Įrangos išdavimo sąrašas</h3>
+            <a class="btn btn-sm btn-primary fa-pull-right" href="{{ path('equipment_handover_new') }}"><i
+                        class="fa fa-plus"></i>Išduoti</a>
+        </div>
 
-    <table class="table">
-        <thead>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th>Id</th>
-                <th>HandoverDate</th>
-                <th>TakeoverDate</th>
-                <th>actions</th>
+                <th>Būsena</th>
+                <th>Išduota įranga</th>
+                <th>Išduota darbuotojui</th>
+                <th>Išdavė</th>
+                <th>Grąžinta</th>
+                <th>Veiksmai</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for equipment_handover in equipment_handovers %}
-            <tr>
-                <td>{{ equipment_handover.id }}</td>
-                <td>{{ equipment_handover.handoverDate ? equipment_handover.handoverDate|date('Y-m-d') : '' }}</td>
-                <td>{{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('equipment_handover_show', {'id': equipment_handover.id}) }}">show</a>
-                    <a href="{{ path('equipment_handover_edit', {'id': equipment_handover.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for equipment_handover in equipment_handovers %}
+                {% set returned = equipment_handover.takeoverDate ? true : false %}
+                <tr>
+                    <td>
+                        {% if returned %}
+                            <span class="badge bg-green"><i class="fa fa-check"></i> grąžinta</span>
+                        {% else %}
+                            <span class="badge bg-yellow"><i class="fa fa-business-time"></i> naudojama</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <i class="fa fa-laptop"></i>
+                        {{ equipment_handover.equipment.brandName }} {{ equipment_handover.equipment.model }}
+                        ({{ equipment_handover.equipment.year ? equipment_handover.equipment.year |date('Y') : '' }})
+                    </td>
+                    <td>
+                        <i class="fa fa-user"></i>
+                        {{ equipment_handover.employee.name }} {{ equipment_handover.employee.surname }}
+                    </td>
+                    <td>
+                        <i class="fa fa-user"></i>
+                        {{ equipment_handover.handoverUser.name }} {{ equipment_handover.handoverUser.surname }}
+                        <br>
+                        <i class="fa fa-calendar"></i>
+                        {{ equipment_handover.handoverDate ? equipment_handover.handoverDate|date('Y-m-d') : '' }}
+                    </td>
+                    <td>
+                        {% if returned %}
+                            <i class="fa fa-user"></i>
+                            {{ equipment_handover.takeoverUser.name }} {{ equipment_handover.takeoverUser.surname }}
+                            <br>
+                            <i class="fa fa-calendar"></i>
+                            {{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-default"
+                           href="{{ path('equipment_handover_show', {'id': equipment_handover.id}) }}"><i
+                                    class="fa fa-eye"></i>Žiūrėti</a>
+                        <a class="btn btn-sm btn-default"
+                           href="{{ path('equipment_handover_edit', {'id': equipment_handover.id}) }}"><i
+                                    class="fa fa-edit"></i>Redaguoti</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('equipment_handover_new') }}">Create new</a>
 {% endblock %}
