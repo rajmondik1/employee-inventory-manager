@@ -34,7 +34,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $Email = $request->request->get('email', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $Email);
-
         return new Passport(
             new UserBadge($Email),
             new PasswordCredentials($request->request->get('password', '')),
@@ -50,9 +49,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_index'));
-//        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

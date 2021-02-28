@@ -5,6 +5,7 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "almasaeed2010/adminlte": "~2.4",
         "composer/package-versions-deprecated": "^1.11",
         "doctrine/annotations": "^1.11",
         "doctrine/doctrine-bundle": "^2.1",
@@ -31,7 +32,8 @@
         "symfony/serializer": "5.*",
         "symfony/validator": "5.*",
         "symfony/yaml": "5.*",
-        "symfonycasts/verify-email-bundle": "^1.2"
+        "symfonycasts/verify-email-bundle": "^1.2",
+        "twitter/bootstrap": "^4.6"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",

@@ -2,34 +2,30 @@
 
 namespace App\Controller;
 
-use App\Message\DoSomethingMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class IndexController extends ApiController
+class IndexController extends AbstractController
 {
     /**
-     * @Route(path="/", name="index")
+     * @Route(path="/", name="app_home")
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
+     */
+    public function home(): ?Response
+    {
+        return $this->redirectToRoute('app_index');
+    }
+
+    /**
+     * @Route(path="/dashboard", name="app_index")
+     *
+     * @return Response
      */
     public function index(): ?Response
     {
-        return $this->apiJsonResponse('Success');
-    }
-
-    // TODO: https://symfony.com/doc/current/components/security.html
-
-    /**
-     * @Route(path="/test", name="app_index")
-     *
-     * @param MessageBusInterface $bus
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function test()
-    {
-        return new Response('Your message has been dispatched!');
+        return $this->render('index.html.twig');
     }
 }
