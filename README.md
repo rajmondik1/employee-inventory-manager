@@ -1,23 +1,16 @@
 
 ## Symfony mysql ngingx boilerplate on docker with rabbitmq
-#### To start run:
+#### To start go to app/:
 ```cd app```
 #### Create env file and change required fields 
 ```cp .env.example .env```
-```sudo docker-compose build```
-#### Then install dependencies
-```composer install```
+#### Build docker containers
+```(sudo) docker-compose build```
 #### Start the containers
 ```docker-compose up```
+#### Go inside php docker container
+```docker exec -ti php-container bash```
+#### Then install dependencies
+```composer install```
 
-### Rabbitmq
-To open rabbitmq dashboard:
-``````
-symfony open:local:rabbitmq
-``````
-
-### Adminer
-```http://localhost:3000/```
-
-#### If you have any problems with amqp
-```sudo apt install php-amqp -y```
+#### That's it! go to localhost:8080
