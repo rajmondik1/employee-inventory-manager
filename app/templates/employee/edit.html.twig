@@ -3,11 +3,24 @@
 {% block title %}Edit Employee{% endblock %}
 
 {% block body %}
-    <h1>Edit Employee</h1>
+    <h1>Redaguoti darbuotoją</h1>
 
-    {{ include('employee/_form.html.twig', {'button_label': 'Update'}) }}
+    <section class="content">
 
-    <a href="{{ path('employee_index') }}">back to list</a>
+        {{ include('employee/_form.html.twig', {'button_label': 'Išsaugoti'}) }}
 
-    {{ include('employee/_delete_form.html.twig') }}
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <a class="btn btn-default" href="{{ path('employee_index') }}"><i
+                                    class="fas fa-long-arrow-alt-left"></i> Grįžti</a>
+                        <div class="fa-pull-right">
+                            {{ include('employee/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

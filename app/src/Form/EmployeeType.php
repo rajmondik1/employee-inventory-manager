@@ -14,12 +14,24 @@ class EmployeeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('surname', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('phone', TextType::class)
-            ->add('department', TextType::class)
-            ->add('position', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'Vardas'
+            ])
+            ->add('surname', TextType::class, [
+                'label' => 'Pavardė'
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'El. paštas'
+            ])
+            ->add('phone', TextType::class, [
+                'label' => 'Telefono numeris'
+            ])
+            ->add('department', TextType::class, [
+                'label' => 'Skyrius'
+            ])
+            ->add('position', TextType::class, [
+                'label' => 'Pareigos'
+            ])
         ;
     }
 

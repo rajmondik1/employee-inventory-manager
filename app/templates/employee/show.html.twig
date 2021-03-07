@@ -5,42 +5,89 @@
 {% block body %}
     <h1>Employee</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ employee.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ employee.name }}</td>
-            </tr>
-            <tr>
-                <th>Surname</th>
-                <td>{{ employee.surname }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ employee.email }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ employee.phone }}</td>
-            </tr>
-            <tr>
-                <th>Department</th>
-                <td>{{ employee.department }}</td>
-            </tr>
-            <tr>
-                <th>Position</th>
-                <td>{{ employee.position }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="content">
 
-    <a href="{{ path('employee_index') }}">back to list</a>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Vardas</th>
+                                <td>{{ employee.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Pavardė</th>
+                                <td>{{ employee.surname }}</td>
+                            </tr>
+                            <tr>
+                                <th>El. paštas</th>
+                                <td>{{ employee.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Telefono numeris</th>
+                                <td>{{ employee.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Skyrius</th>
+                                <td>{{ employee.department }}</td>
+                            </tr>
+                            <tr>
+                                <th>Pareigos</th>
+                                <td>{{ employee.position }}</td>
+                            </tr>
+                            <tr>
+                                <th>Turima iranga</th>
+                                <td>
+                                    {% for equipment_handover in employee.equipmentHandovers %}
+                                        {% set returned = equipment_handover.takeoverDate ? true : false %}
+                                        {% if returned %}
+                                            <span class="badge bg-green"><i class="fa fa-check"></i> grąžinta</span>
+                                        {% else %}
+                                            <span class="badge bg-yellow"><i
+                                                        class="fa fa-business-time"></i> naudojama</span>
+                                        {% endif %}
 
-    <a href="{{ path('employee_edit', {'id': employee.id}) }}">edit</a>
+                                        {% if equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_LAPTOP') %}
+                                            <i class="fa fa-laptop"></i>
+                                        {% elseif equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_PHONE') %}
+                                            <i class="fa fa-phone"></i>
+                                        {% elseif equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_ACCESSORY') %}
+                                            <i class="fa fa-keyboard"></i>
+                                        {% endif %}
+                                        {{ equipment_handover.equipment.brandName }} {{ equipment_handover.equipment.model }}
+                                        ({{ equipment_handover.equipment.year ? equipment_handover.equipment.year |date('Y') : '' }}
+                                        )
+                                        <br>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    {{ include('employee/_delete_form.html.twig') }}
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <a class="btn btn-default" href="{{ path('employee_index') }}">
+                            <i class="fas fa-long-arrow-alt-left"></i> Grįžti</a>
+
+                        <a class="btn btn-default" href="{{ path('employee_edit', {'id': employee.id}) }}">
+                            <i class="fas fa-edit"></i> Redaguoti</a>
+
+                        <div class="fa-pull-right">
+                            {{ include('employee/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
 {% endblock %}
