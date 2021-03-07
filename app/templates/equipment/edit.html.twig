@@ -1,13 +1,26 @@
 {% extends 'index.html.twig' %}
 
-{% block title %}Edit Equipment{% endblock %}
+{% block title %}Redaguoti įrangą{% endblock %}
 
 {% block body %}
-    <h1>Edit Equipment</h1>
+    <h1>Redaguoti įrangą</h1>
 
-    {{ include('equipment/_form.html.twig', {'button_label': 'Update'}) }}
+    <section>
 
-    <a href="{{ path('equipment_index') }}">back to list</a>
+        {{ include('equipment/_form.html.twig', {'button_label': 'Išsaugoti'}) }}
 
-    {{ include('equipment/_delete_form.html.twig') }}
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <a class="btn btn-default" href="{{ path('equipment_index') }}"><i
+                                    class="fas fa-long-arrow-alt-left"></i> Grįžti</a>
+                        <div class="fa-pull-right">
+                            {{ include('equipment/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

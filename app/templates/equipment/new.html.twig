@@ -1,11 +1,22 @@
 {% extends 'index.html.twig' %}
 
-{% block title %}New Equipment{% endblock %}
+{% block title %}Nauja įranga{% endblock %}
 
 {% block body %}
-    <h1>Create new Equipment</h1>
+    <h1>Nauja įranga</h1>
+    <section class="content">
 
     {{ include('equipment/_form.html.twig') }}
 
-    <a href="{{ path('equipment_index') }}">back to list</a>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <a class="btn btn-default" href="{{ path('equipment_index') }}"><i
+                                    class="fas fa-long-arrow-alt-left"></i> Grįžti</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

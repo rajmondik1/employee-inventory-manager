@@ -16,21 +16,35 @@ class EquipmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('brandName', TextType::class)
-            ->add('model', TextType::class)
+            ->add('brandName', TextType::class, [
+                'label' => 'Gamintojas',
+            ])
+            ->add('model', TextType::class, [
+                'label' => 'Modelis',
+            ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Nešiojamas kompiuteris' => Equipment::EQUIPMENT_TYPE_LAPTOP,
                     'Telefonas' => Equipment::EQUIPMENT_TYPE_PHONE,
                     'Aksesuaras' => Equipment::EQUIPMENT_TYPE_ACCESSORY,
-                ]
+                ],
+                'label' => 'Tipas',
             ])
-            ->add('year', DateType::class)
-            ->add('identifier', TextType::class)
-            ->add('price', MoneyType::class)
-            ->add('warrantyExpires', DateType::class)
-            ->add('file', TextType::class, [
-                'required' => false
+            ->add('year', DateType::class, [
+                'widget' => 'single_text',
+                'attr' => ['class' => 'js-datepicker-year'],
+                'label' => 'Metai',
+            ])
+            ->add('identifier', TextType::class, [
+                'label' => 'Unikalus kodas',
+            ])
+            ->add('price', MoneyType::class, [
+                'label' => 'Kaina',
+            ])
+            ->add('warrantyExpires', DateType::class, [
+                'widget' => 'single_text',
+                'attr' => ['class' => 'js-datepicker-warranty'],
+                'label' => 'Garantija iki',
             ])
         ;
     }

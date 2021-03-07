@@ -1,4 +1,67 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="row">
+    <div class="col-md-10">
+        <div class="box box-primary">
+            {{ form_start(form) }}
+            <div class="box-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.brandName) }}</label>
+                            {{ form_widget(form.brandName, {'attr': {'class':'form-control', 'placeholder': 'Macbook'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.model) }}</label>
+                            {{ form_widget(form.model, {'attr': {'class':'form-control', 'placeholder': 'Pro'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.type) }}</label>
+                            {{ form_widget(form.type, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.year) }}</label>
+                            {{ form_widget(form.year, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.identifier) }}</label>
+                            {{ form_widget(form.identifier, {'attr': {'class':'form-control', 'placeholder': '134455123'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.price) }}</label>
+                            {{ form_widget(form.price, {'attr': {'class':'form-control', 'placeholder': '1600'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.warrantyExpires) }}</label>
+                            {{ form_widget(form.warrantyExpires, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary">{{ button_label|default('Išsaugoti') }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
