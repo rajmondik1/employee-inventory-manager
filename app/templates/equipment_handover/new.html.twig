@@ -1,11 +1,22 @@
 {% extends 'index.html.twig' %}
 
-{% block title %}New EquipmentHandover{% endblock %}
+{% block title %}Išduoti naują įrangą{% endblock %}
 
 {% block body %}
-    <h1>Create new EquipmentHandover</h1>
+    <h1>Išduoti naują įrangą</h1>
+    <section class="content">
 
-    {{ include('equipment_handover/_form.html.twig') }}
+        {{ include('equipment_handover/_form.html.twig') }}
 
-    <a href="{{ path('equipment_handover_index') }}">back to list</a>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <a class="btn btn-default" href="{{ path('equipment_handover_index') }}"><i
+                                    class="fas fa-long-arrow-alt-left"></i> Grįžti</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

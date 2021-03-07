@@ -1,13 +1,26 @@
 {% extends 'index.html.twig' %}
 
-{% block title %}Edit EquipmentHandover{% endblock %}
+{% block title %}Redaguoti įrangos išdavimą{% endblock %}
 
 {% block body %}
-    <h1>Edit EquipmentHandover</h1>
+    <h1>Redaguoti įrangos išdavimą</h1>
 
-    {{ include('equipment_handover/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('equipment_handover_index') }}">back to list</a>
+<section>
+    {{ include('equipment_handover/_form.html.twig', {'button_label': 'Išsaugoti'}) }}
 
-    {{ include('equipment_handover/_delete_form.html.twig') }}
+    <div class="row">
+        <div class="col-md-10">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <a class="btn btn-default" href="{{ path('equipment_handover_index') }}"><i
+                                class="fas fa-long-arrow-alt-left"></i> Grįžti</a>
+                    <div class="fa-pull-right">
+                        {{ include('equipment_handover/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
 {% endblock %}

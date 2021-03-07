@@ -1,14 +1,61 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
-{#<div class="form-group">#}
-{#    <label>Select</label>#}
-{#    <select class="form-control">#}
-{#        <option>option 1</option>#}
-{#        <option>option 2</option>#}
-{#        <option>option 3</option>#}
-{#        <option>option 4</option>#}
-{#        <option>option 5</option>#}
-{#    </select>#}
-{#</div>#}
+<div class="row">
+    <div class="col-md-10">
+        <div class="box box-primary">
+            {{ form_start(form) }}
+            <div class="box-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.employee) }}</label>
+                            {{ form_widget(form.employee, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.equipment) }}</label>
+                            {{ form_widget(form.equipment, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.handoverUser) }}</label>
+                            {{ form_widget(form.handoverUser, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.handoverDate) }}</label>
+                            {{ form_widget(form.handoverDate, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.takeoverUser) }}</label>
+                            {{ form_widget(form.takeoverUser, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">{{ form_label(form.takeoverDate) }}</label>
+                            {{ form_widget(form.takeoverDate, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <button class="btn btn-primary">{{ button_label|default('Išsaugoti') }}</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+</div>

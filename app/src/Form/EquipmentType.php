@@ -32,7 +32,6 @@ class EquipmentType extends AbstractType
             ])
             ->add('year', DateType::class, [
                 'widget' => 'single_text',
-                'attr' => ['class' => 'js-datepicker-year'],
                 'label' => 'Metai',
             ])
             ->add('identifier', TextType::class, [
@@ -43,7 +42,6 @@ class EquipmentType extends AbstractType
             ])
             ->add('warrantyExpires', DateType::class, [
                 'widget' => 'single_text',
-                'attr' => ['class' => 'js-datepicker-warranty'],
                 'label' => 'Garantija iki',
             ])
         ;

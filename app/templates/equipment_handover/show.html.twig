@@ -1,30 +1,101 @@
 {% extends 'index.html.twig' %}
 
-{% block title %}EquipmentHandover{% endblock %}
+{% block title %}Įrangos išdavimas{% endblock %}
 
 {% block body %}
-    <h1>EquipmentHandover</h1>
+    <h1>Įrangos išdavimas</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ equipment_handover.id }}</td>
-            </tr>
-            <tr>
-                <th>HandoverDate</th>
-                <td>{{ equipment_handover.handoverDate ? equipment_handover.handoverDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>TakeoverDate</th>
-                <td>{{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section>
+        {% set returned = equipment_handover.takeoverDate ? true : false %}
 
-    <a href="{{ path('equipment_handover_index') }}">back to list</a>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Būsena</th>
+                                <td>
+                                    {% if returned %}
+                                        <span class="badge bg-green"><i class="fa fa-check"></i> grąžinta</span>
+                                    {% else %}
+                                        <span class="badge bg-yellow"><i class="fa fa-business-time"></i> naudojama</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Išduota įranga</th>
+                                <td>
+                                    {% if equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_LAPTOP') %}
+                                        <i class="fa fa-laptop"></i>
+                                    {% elseif equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_PHONE') %}
+                                        <i class="fa fa-phone"></i>
+                                    {% elseif equipment_handover.equipment.type == constant('App\\Entity\\Equipment::EQUIPMENT_TYPE_ACCESSORY') %}
+                                        <i class="fa fa-keyboard"></i>
+                                    {% endif %}
+                                    {{ equipment_handover.equipment.brandName }} {{ equipment_handover.equipment.model }}
+                                    ({{ equipment_handover.equipment.year ? equipment_handover.equipment.year |date('Y') : '' }})
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Išduota darbuotojui</th>
+                                <td>
+                                    <i class="fa fa-user"></i>
+                                    {{ equipment_handover.employee.name }} {{ equipment_handover.employee.surname }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Išdavimas</th>
+                                <td>
+                                    <i class="fa fa-user"></i>
+                                    {{ equipment_handover.handoverUser.name }} {{ equipment_handover.handoverUser.surname }}
+                                    <br>
+                                    <i class="fa fa-calendar"></i>
+                                    {{ equipment_handover.handoverDate ? equipment_handover.handoverDate|date('Y-m-d') : '' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Grąžinimas</th>
+                                <td>
+                                    {% if returned %}
+                                        <i class="fa fa-user"></i>
+                                        {{ equipment_handover.takeoverUser.name }} {{ equipment_handover.takeoverUser.surname }}
+                                        <br>
+                                        <i class="fa fa-calendar"></i>
+                                        {{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('equipment_handover_edit', {'id': equipment_handover.id}) }}">edit</a>
 
-    {{ include('equipment_handover/_delete_form.html.twig') }}
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <a class="btn btn-default" href="{{ path('equipment_handover_index') }}">
+                            <i class="fas fa-long-arrow-alt-left"></i> Grįžti</a>
+
+                        <a class="btn btn-default"
+                           href="{{ path('equipment_handover_edit', {'id': equipment_handover.id}) }}">
+                            <i class="fas fa-edit"></i> Redaguoti</a>
+
+                        <div class="fa-pull-right">
+                            {{ include('equipment_handover/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
 {% endblock %}

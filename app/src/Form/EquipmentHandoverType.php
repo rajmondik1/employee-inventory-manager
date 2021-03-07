@@ -18,34 +18,43 @@ class EquipmentHandoverType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('handoverDate', DateType::class)
+            ->add('handoverDate', DateType::class, [
+                'label' => 'Išdavimo data',
+                'widget' => 'single_text',
+            ])
             ->add('takeoverDate', DateType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'Grąžinimo data',
+                'widget' => 'single_text',
             ])
             ->add('employee', EntityType::class, [
                 'class' => Employee::class,
                 'choice_label' => function (?Employee $employee) {
                     return $employee->getName() . ' ' . $employee->getSurname();
-                }
+                },
+                'label' => 'Darbuotojas'
             ])
             ->add('equipment', EntityType::class, [
                 'class' => Equipment::class,
                 'choice_label' => function (?Equipment $equipment) {
                     return $equipment->getBrandName() . ' ' . $equipment->getModel() . ' ' . $equipment->getYear()->format('Y') . ' ' . $equipment->getPrice();
-                }
+                },
+                'label' => 'Įranga'
             ])
             ->add('handoverUser', EntityType::class, [
                 'class' => Employee::class,
                 'choice_label' => function (?Employee $employee) {
                     return $employee->getName() . ' ' . $employee->getSurname();
-                }
+                },
+                'label' => 'Išdavęs asmuo'
             ])
             ->add('takeoverUser',  EntityType::class, [
                 'class' => Employee::class,
                 'choice_label' => function (?Employee $employee) {
                     return $employee->getName() . ' ' . $employee->getSurname();
                 },
-                'required' => false
+                'required' => false,
+                'label' => 'Priėmęs asmuo'
             ])
         ;
     }
