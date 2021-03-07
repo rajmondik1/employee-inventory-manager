@@ -1,6 +1,5 @@
 
 ## Symfony mysql ngingx boilerplate on docker with rabbitmq
-#### To start go to app/:
 ```cd app```
 #### Create env file and change required fields 
 ```cp .env.example .env```

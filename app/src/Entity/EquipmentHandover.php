@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EquipmentHandoverRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -98,18 +99,18 @@ class EquipmentHandover
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getHandoverDate(): ?\DateTimeInterface
+    public function getHandoverDate(): ?DateTimeInterface
     {
         return $this->handoverDate;
     }
 
     /**
-     * @param \DateTimeInterface $handoverDate
+     * @param DateTimeInterface $handoverDate
      * @return $this
      */
-    public function setHandoverDate(\DateTimeInterface $handoverDate): self
+    public function setHandoverDate(DateTimeInterface $handoverDate): self
     {
         $this->handoverDate = $handoverDate;
 
@@ -136,18 +137,18 @@ class EquipmentHandover
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getTakeoverDate(): ?\DateTimeInterface
+    public function getTakeoverDate(): ?DateTimeInterface
     {
         return $this->takeoverDate;
     }
 
     /**
-     * @param \DateTimeInterface|null $takeoverDate
+     * @param DateTimeInterface|null $takeoverDate
      * @return $this
      */
-    public function setTakeoverDate(?\DateTimeInterface $takeoverDate): self
+    public function setTakeoverDate(?DateTimeInterface $takeoverDate): self
     {
         $this->takeoverDate = $takeoverDate;
 

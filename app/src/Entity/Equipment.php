@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EquipmentRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Equipment
 {
-    const EQUIPMENT_TYPE_LAPTOP = 'laptop';
-    const EQUIPMENT_TYPE_PHONE = 'phone';
-    const EQUIPMENT_TYPE_ACCESSORY = 'accessory';
+    public const EQUIPMENT_TYPE_LAPTOP = 'laptop';
+    public const EQUIPMENT_TYPE_PHONE = 'phone';
+    public const EQUIPMENT_TYPE_ACCESSORY = 'accessory';
 
     /**
      * @ORM\Id
@@ -137,18 +138,18 @@ class Equipment
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getYear(): ?\DateTimeInterface
+    public function getYear(): ?DateTimeInterface
     {
         return $this->year;
     }
 
     /**
-     * @param \DateTimeInterface $year
+     * @param DateTimeInterface $year
      * @return $this
      */
-    public function setYear(\DateTimeInterface $year): self
+    public function setYear(DateTimeInterface $year): self
     {
         $this->year = $year;
 
@@ -194,18 +195,18 @@ class Equipment
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getWarrantyExpires(): ?\DateTimeInterface
+    public function getWarrantyExpires(): ?DateTimeInterface
     {
         return $this->warrantyExpires;
     }
 
     /**
-     * @param \DateTimeInterface|null $warrantyExpires
+     * @param DateTimeInterface|null $warrantyExpires
      * @return $this
      */
-    public function setWarrantyExpires(?\DateTimeInterface $warrantyExpires): self
+    public function setWarrantyExpires(?DateTimeInterface $warrantyExpires): self
     {
         $this->warrantyExpires = $warrantyExpires;
 
@@ -259,11 +260,9 @@ class Equipment
      */
     public function removeEquipmentHandover(EquipmentHandover $equipmentHandover): self
     {
-        if ($this->equipmentHandovers->removeElement($equipmentHandover)) {
-            // set the owning side to null (unless already changed)
-            if ($equipmentHandover->getEquipment() === $this) {
-                $equipmentHandover->setEquipment(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->equipmentHandovers->removeElement($equipmentHandover) && $equipmentHandover->getEquipment() === $this) {
+            $equipmentHandover->setEquipment(null);
         }
 
         return $this;

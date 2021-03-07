@@ -7,7 +7,6 @@ namespace App\Service;
 use App\Entity\Employee;
 use App\Entity\Equipment;
 use App\Entity\EquipmentHandover;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DashboardService
@@ -22,7 +21,7 @@ class DashboardService
     /**
      * @return int
      */
-    public function getEmployeeCount()
+    public function getEmployeeCount(): int
     {
         return $this->em->getRepository(Employee::class)->count([]);
     }
@@ -30,7 +29,7 @@ class DashboardService
     /**
      * @return int
      */
-    public function getEquipmentCount()
+    public function getEquipmentCount(): int
     {
         return $this->em->getRepository(Equipment::class)->count([]);
 
@@ -39,7 +38,7 @@ class DashboardService
     /**
      * @return int
      */
-    public function getHandoverCount()
+    public function getHandoverCount(): int
     {
         return $this->em->getRepository(EquipmentHandover::class)->count([]);
     }
@@ -47,7 +46,7 @@ class DashboardService
     /**
      * @return double
      */
-    public function getTotalPrice()
+    public function getTotalPrice(): float
     {
         return $this->em->getRepository(Equipment::class)->countTotalPrice()[1];
     }

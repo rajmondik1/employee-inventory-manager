@@ -209,11 +209,9 @@ class Employee
      */
     public function removeEquipmentHandover(EquipmentHandover $equipmentHandover): self
     {
-        if ($this->equipmentHandovers->removeElement($equipmentHandover)) {
-            // set the owning side to null (unless already changed)
-            if ($equipmentHandover->getEmployee() === $this) {
-                $equipmentHandover->setEmployee(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->equipmentHandovers->removeElement($equipmentHandover) && $equipmentHandover->getEmployee() === $this) {
+            $equipmentHandover->setEmployee(null);
         }
 
         return $this;

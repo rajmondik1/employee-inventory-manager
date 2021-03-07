@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Equipment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,11 +20,15 @@ class EquipmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Equipment::class);
     }
 
-    public function countTotalPrice()
+    public function countTotalPrice(): int
     {
-        return $this->createQueryBuilder('equipment')
-            ->select('SUM(equipment.price)')
-            ->getQuery()
-            ->getOneOrNullResult();
+        try {
+            return $this->createQueryBuilder('equipment')
+                ->select('SUM(equipment.price)')
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            return 0;
+        }
     }
 }
