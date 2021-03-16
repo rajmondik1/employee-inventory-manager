@@ -20,7 +20,8 @@
                                     {% if returned %}
                                         <span class="badge bg-green"><i class="fa fa-check"></i> grąžinta</span>
                                     {% else %}
-                                        <span class="badge bg-yellow"><i class="fa fa-business-time"></i> naudojama</span>
+                                        <span class="badge bg-yellow"><i
+                                                    class="fa fa-business-time"></i> naudojama</span>
                                     {% endif %}
                                 </td>
                             </tr>
@@ -35,7 +36,8 @@
                                         <i class="fa fa-keyboard"></i>
                                     {% endif %}
                                     {{ equipment_handover.equipment.brandName }} {{ equipment_handover.equipment.model }}
-                                    ({{ equipment_handover.equipment.year ? equipment_handover.equipment.year |date('Y') : '' }})
+                                    ({{ equipment_handover.equipment.year ? equipment_handover.equipment.year |date('Y') : '' }}
+                                    )
                                 </td>
                             </tr>
                             <tr>
@@ -59,9 +61,11 @@
                                 <th>Grąžinimas</th>
                                 <td>
                                     {% if returned %}
-                                        <i class="fa fa-user"></i>
-                                        {{ equipment_handover.takeoverUser.name }} {{ equipment_handover.takeoverUser.surname }}
-                                        <br>
+                                        {% if equipment_handover.takeoverUser is not null %}
+                                            <i class="fa fa-user"></i>
+                                            {{ equipment_handover.takeoverUser.name }} {{ equipment_handover.takeoverUser.surname }}
+                                            <br>
+                                        {% endif %}
                                         <i class="fa fa-calendar"></i>
                                         {{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}
                                     {% else %}

@@ -20,7 +20,7 @@ class EquipmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Equipment::class);
     }
 
-    public function countTotalPrice(): int
+    public function countTotalPrice(): array
     {
         try {
             return $this->createQueryBuilder('equipment')

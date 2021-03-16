@@ -56,9 +56,11 @@
                     </td>
                     <td>
                         {% if returned %}
-                            <i class="fa fa-user"></i>
-                            {{ equipment_handover.takeoverUser.name }} {{ equipment_handover.takeoverUser.surname }}
-                            <br>
+                            {% if equipment_handover.takeoverUser is not null %}
+                                <i class="fa fa-user"></i>
+                                {{ equipment_handover.takeoverUser.name }} {{ equipment_handover.takeoverUser.surname }}
+                                <br>
+                            {% endif %}
                             <i class="fa fa-calendar"></i>
                             {{ equipment_handover.takeoverDate ? equipment_handover.takeoverDate|date('Y-m-d') : '' }}
                         {% else %}
