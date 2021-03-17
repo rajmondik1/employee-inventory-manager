@@ -1,5 +1,5 @@
 
-## Symfony mysql ngingx boilerplate on docker with rabbitmq
+## Employee inventory management system
 ```cd app```
 #### Create env file and change required fields 
 ```cp .env.example .env```
